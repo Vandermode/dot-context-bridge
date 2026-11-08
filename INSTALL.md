@@ -5,6 +5,28 @@ first; then guide the owner through the few account-specific steps. Never substi
 a maintainer's paths, plugin IDs, credentials or Tunnel. Do not install a public MCP
 listener. The source is public; each user's session-reading connection remains private.
 
+## Guided one-stop entrypoint
+
+Start on the machine and OS account that actually owns the intended Codex history.
+In a separate source checkout, run `node scripts/onboard.mjs` to inspect without
+applying changes, then `node scripts/onboard.mjs --apply --prepare` to prepare,
+configure and validate the local reader. The wrapper does not install Node/Codex,
+create credentials, start a Tunnel or service, enroll an account, or edit local
+Codex isolation settings. Missing prerequisites get a specific next step.
+
+Use `--out NEW_DIRECTORY` for a new configuration, or `--apply --resume --out
+EXISTING_DIRECTORY` to validate existing generated device/command files without
+overwriting them. With `--apply`, `--tunnel-id EXISTING_ID` optionally generates a
+new profile for the owner's already identified Tunnel. `--thread ID` and
+`--search "known phrase"` opt into protected content checks; omit them for
+metadata-only smoke. A schema check plus metadata smoke is not history or cloud
+acceptance.
+
+See [the onboarding workflow](docs/onboarding.md) for phase boundaries, recovery
+and the remaining guided connection checks. The numbered manual procedure below
+is the fallback and remains authoritative for account permissions, isolation and
+actual Chat/Dot acceptance. History pagination never starts or resumes execution.
+
 ## 1. Inspect and preserve
 
 Read README.md, docs/security.md and any target-machine instructions. Identify OS,

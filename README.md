@@ -10,24 +10,60 @@ This Linux-enabled fork is based on [ye-kaifan/local-codex-context-bridge](https
 
 ## Give this to your Codex
 
+Run this instruction in Codex on the **server/computer and OS account that owns
+the sessions**, or name that target explicitly when giving Codex remote access.
+
 ```text
-Install https://github.com/Vandermode/dot-context-bridge for read-only
-Codex context in ChatGPT Chat and Dot. Read INSTALL.md and follow it end to end.
-Detect my OS, actual Codex executable/home and existing connections; preserve
-my current installation and settings. Build and test locally, then help connect
-my own private Secure MCP Tunnel. Isolate only LOCAL Codex from this plugin,
-its registered device connectors and every actually discovered bundled SKILL.md.
-Keep the ordinary Chat/Dot connection and background readers running; do not
-globally uninstall the plugin. Discover current plugin/app IDs and all installed
-skill cache versions; use existing absolute SKILL.md files, not directory-only
-overrides. Rediscover and reverify after a plugin update changes cache paths.
-Pause for my login, secret entry or approval of new account permissions. Do not
-create credentials, expose public ports, or change unrelated settings silently.
-Restart local Codex and open a genuinely new local chat to verify native history
+Install https://github.com/Vandermode/dot-context-bridge on the source computer
+for read-only Codex history in ChatGPT Chat and Dot. Read INSTALL.md and
+docs/onboarding.md. Detect the target OS/account, Node/npm/Git, actual Codex
+executable/home and existing installations/connections. Preserve existing work.
+Use scripts/onboard.mjs to inspect first, then --apply --prepare in a separate
+source checkout to build, configure and validate the local reader. Use --resume
+only for a verified existing generated configuration. Continue through all
+permitted steps rather than asking me to run each command. Reuse my existing
+private Secure MCP Tunnel; generate its local profile only after identifying its
+actual ID. Guide me through private connection setup and credential entry.
+Pause for genuine login, credential or account-permission approvals; never
+create credentials, expose public ports or change unrelated settings silently.
+Ask me to select an existing completed session before protected body/search
+checks. Pagination means retrieving more history, never resuming a Codex turn.
+Keep this bridge read-only: no thread start/resume, command execution or writes.
+Isolate only LOCAL Codex from this plugin, its actual registered device
+connectors and every discovered bundled SKILL.md. Keep ordinary Chat/Dot
+connections and readers running; do not globally uninstall the plugin. Discover
+real plugin/app IDs and all installed skill-cache versions, use existing absolute
+SKILL.md files and reverify changed cache paths after updates.
+Restart local Codex and use a genuinely new local chat to verify native history
 and absence of this plugin's tools/skills. Separately verify cloud Chat and Dot
-search and turn/item continuation through the reader. Report each as passed,
-failed or not run; old chats and simulated path tests do not prove acceptance.
+search and turn/item pagination. Report each phase as passed, failed or not run,
+with exact blockers. Local smoke, old chats and simulated tests are not cloud
+acceptance. Configure background service only with separate authorization.
 ```
+
+## One-stop local onboarding
+
+From a separate source checkout on the source machine:
+
+```sh
+node scripts/onboard.mjs
+node scripts/onboard.mjs --apply --prepare
+```
+
+The default is inspection only. `--apply --prepare` installs this checkout's npm
+dependencies, runs fixed build/test checks, creates a fresh reader configuration,
+and runs native schema and metadata smoke checks. It does not install Node or
+Codex. Add `--out NEW_DIRECTORY` to choose the output directory. For a verified
+existing generated configuration use `--apply --resume --out EXISTING_DIRECTORY`;
+no configuration is overwritten.
+
+An optional `--tunnel-id YOUR_EXISTING_TUNNEL_ID` with `--apply` generates a new
+private Tunnel profile. It does not create or start a Tunnel, obtain credentials,
+or enroll a ChatGPT account. Protected history/search checks require explicit
+`--thread EXISTING_THREAD_ID` / `--search "known phrase"`. See the
+[onboarding stages and recovery guide](docs/onboarding.md). Private connection,
+Chat/Dot acceptance and local Codex isolation remain guided steps with their own
+results, not automatic success. The manual commands below remain available.
 
 ## Local quick start
 

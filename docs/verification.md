@@ -126,3 +126,30 @@ Not run: real Linux history or continuation, account credentials, SSH/Remote
 Control chat visibility, WSL/ARM64, systemd or desktop lifecycle, private Tunnel and
 Chat/Dot acceptance. Ubuntu CI is configured but a local test pass is not evidence
 that hosted CI ran. Run the target-machine checks in [Linux notes](linux.md).
+
+
+## Read-only onboarding prototype verification
+
+Verified 2026-11-08 in the isolated Linux x64 workspace with Node 24.22.1.
+This change has not been deployed or qualified on the user's server.
+
+- All 102 deterministic tests passed, including 15 onboarding/profile tests.
+- Lint, strict typecheck, build, release source/package scan and all 11 retained
+  upstream hashes passed. The runtime package was produced successfully.
+- The unified command's inspect, apply and unchanged-resume flows passed against
+  official Codex CLI 0.167.0-alpha.4 using new empty temporary Codex homes.
+  Native schema, MCP catalog/write denial and metadata listing passed.
+- `--apply --prepare` completed dependency installation from the existing npm
+  cache, lint/typecheck/tests, fresh configuration, schema and metadata smoke.
+  This verifies offline cached preparation, not network installation on another host.
+- An example Tunnel profile was generated and matched unchanged on resume. No
+  Tunnel, key, account connection, background service or public listener was created.
+- Failure tests preserve partial setup, reject altered launch commands and profile
+  destination changes, fail closed on schema/content errors, and do not substitute
+  exact content mode or another source. Unexercised cursors remain unexercised.
+
+Not run: real-account thread content/search and pagination; macOS/Windows runs for
+this onboarding change; WSL/ARM64; private Tunnel ownership/runtime; ordinary Chat
+and Dot acceptance; local isolation in a new chat; services and credentials. The
+wrapper reports cloud and service phases as not run rather than inferring success.
+The original reader and native read-method allowlist are unchanged.

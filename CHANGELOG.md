@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add inspect-first server onboarding with explicit apply/prepare, no-clobber resume, private Tunnel profile generation and per-stage local/cloud verification reporting. Preserve the original read-only tool and native RPC boundaries.
+
 - Add Linux foreground setup, POSIX path/process policy and XDG checkpoint defaults; retain read-only and credential boundaries.
 - Add Linux setup-to-MCP and real child-shutdown regressions and an Ubuntu CI job; document SSH, Remote Control, cloud-history and WSL scope.
 

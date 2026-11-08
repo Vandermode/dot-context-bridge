@@ -39,7 +39,8 @@
     "smoke": "node scripts/smoke.mjs",
     "check:release": "node scripts/check-release.mjs",
     "prepack": "npm run build",
-    "check:native-schema": "node scripts/check-native-schema.mjs"
+    "check:native-schema": "node scripts/check-native-schema.mjs",
+    "onboard": "node scripts/onboard.mjs"
   },
   "devDependencies": {
     "@types/node": "24.13.3",

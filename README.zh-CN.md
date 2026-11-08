@@ -8,21 +8,50 @@
 
 ## 直接发给自己的 Codex
 
+在**实际保存会话的服务器/电脑及其 OS 账号**中把以下指令交给 Codex；远程操作时明确指定目标。
+
 ```text
-请安装 https://github.com/Vandermode/dot-context-bridge，让 ChatGPT Chat
-和 Dot 只读访问我的 Codex 会话。先读 INSTALL.md，按其中流程端到端完成。
-自动识别系统、实际 Codex 可执行文件和会话目录，复用已有连接并保留现有配置。
-先构建测试，再接入我自己的私有 Secure MCP Tunnel。隔离只针对 LOCAL Codex：
-停用这个插件、相关设备连接器及随附技能，保留普通 Chat/Dot 连接和后台读取器，
-不要全局卸载插件。发现实际插件/连接器 ID 和所有已安装版本的技能缓存路径，
-用真实存在的 SKILL.md 文件完整路径配置禁用，不能只写目录。插件升级改变缓存
-路径后重新发现并复验，不假定旧配置会自动覆盖新版本。
-涉及本人登录、隐藏输入密钥或新增账号权限时暂停；不要自行创建持续访问凭据、
-开放公网端口或修改无关设置。重启本地 Codex，真正新开一个本地聊天，验证插件
-工具与技能不再出现，并实测原生 history；另在云端普通 Chat 和 Dot 分别验证读取器
-搜索及 turn/item 连续分页。逐项报告通过、失败、未执行和待手动完成的项目，
-不要把旧聊天结果或路径语义模拟当成新聊天、跨平台或云端验收。
+请在源电脑安装 https://github.com/Vandermode/dot-context-bridge，
+让 ChatGPT Chat 和 Dot 只读访问我的 Codex 历史。先读 INSTALL.md 和
+docs/onboarding.md。检测目标系统、账号、Node/npm/Git、实际 Codex
+可执行文件和 home，以及已有安装和私有连接，保留现有工作和配置。
+先运行 scripts/onboard.mjs 检查；在独立源码目录使用 --apply --prepare
+完成构建、配置和本地验证。仅对验证过的已有生成配置使用 --resume。
+在权限允许范围内连续完成流程，不要每一步都让我手动执行命令。
+确认我的已有私有 Secure MCP Tunnel ID 后生成配置，并引导我完成私有连接。
+真正涉及本人登录、凭据输入或新增账号权限时暂停；不要擅自创建凭据、
+开放公网端口或改变无关设置。正文/搜索验证前让我指定已有的已完成会话。
+“连续分页”只指继续读取历史，不能继续执行会话，不添加启动、续接或写入能力。
+隔离只针对 LOCAL Codex：停用这个插件、实际设备连接器及所有已发现的随附
+SKILL.md，保留普通 Chat/Dot 连接和读取器，不要全局卸载插件。发现实际
+插件/连接器 ID 和所有已安装版本的技能缓存，用真实存在的 SKILL.md 绝对
+路径配置禁用。升级改变缓存路径后重新发现并复验。
+重启本地 Codex，真正新开本地聊天验证原生 history 与工具/技能隔离；另在
+普通 Chat 和 Dot 分别验证搜索与 turn/item 分页。逐项报告通过、失败或未执行
+及具体阻碍，不把本地 smoke、旧聊天或模拟测试当作云端验收。
+后台服务需要另行授权，不要默默启用。
 ```
+
+## 一站式本地配置
+
+在源机器的独立源码目录运行：
+
+```sh
+node scripts/onboard.mjs
+node scripts/onboard.mjs --apply --prepare
+```
+
+默认只检查；`--apply --prepare` 安装该源码目录的 npm 依赖，运行固定构建/测试，
+生成全新读取器配置，再检查原生 schema 和元数据读取。缺少 Node 或 Codex 时不会
+自动安装，也不会使用 sudo。用 `--out 新目录` 选择配置位置；已有生成配置经过
+核对后可用 `--apply --resume --out 已有目录` 重新验证，不覆盖配置。
+
+配合 `--apply --tunnel-id 已有TUNNEL_ID` 可生成新的私有 Tunnel 配置文件，
+但不会创建或启动 Tunnel、创建凭据或自动开通 ChatGPT 账号连接。
+`--thread 已有会话ID` / `--search "已知短语"` 明确选择 protected 正文/搜索验证，
+不会自动切换 exact。私有连接、普通 Chat/Dot 验收及本地 Codex 隔离仍是分阶段
+引导完成，不能把本地通过当作全部接通。详见 [一站式流程与恢复](docs/onboarding.md)。
+下面的手动流程仍然可用。
 
 ## 本地安装
 
